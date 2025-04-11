@@ -247,14 +247,14 @@
 
             // Using Single-family dwelling values from cleveland_utilities.json
             if (heating) utilityDeduction += utilityAllowanceCleveland['heating']?.[bedrooms] || 0;
-            if (water) utilityDeduction += utilityAllowanceCleveland['water_sewer']?.[bedrooms] || 0;
+            if (water) utilityDeduction += utilityAllowanceCleveland['water_sewer']?.[bedrooms] || 0; // Assuming 'water' checkbox corresponds to water & sewer
             if (cooking) utilityDeduction += utilityAllowanceCleveland['cooking']?.[bedrooms] || 0;
             if (trash) utilityDeduction += utilityAllowanceCleveland['trash']?.[bedrooms] || 0;
 
             // Add deduction for electricity (other) and water heating if tenant pays any utility
             if (heating || water || cooking || trash) {
                  utilityDeduction += utilityAllowanceCleveland['electricity']?.[bedrooms] || 0;
-                 utilityDeduction += utilityAllowanceCleveland['water_heating']?.[bedrooms] || 0;
+                 utilityDeduction += utilityAllowanceCleveland['water_heating']?.[bedrooms] || 0; // Add water heating
             }
 
             if (noStove) utilityDeduction += utilityAllowanceCleveland['stove']?.[bedrooms] || 0;
@@ -285,36 +285,10 @@
         }
 
         function calculateMontgomeryFMR() {
-             console.log("Calculating Montgomery FMR...");
             const zip = document.getElementById('zip-montgomery').value;
             const bedrooms = document.getElementById('bedrooms-montgomery').value;
-            const proposedRentInput = document.getElementById('proposed-rent-montgomery');
-            const tenantIncomeInput = document.getElementById('tenant-income-montgomery');
-
-             // Input validation
-            if (!zip || !bedrooms || !proposedRentInput.value || !tenantIncomeInput.value) {
-                alert("Please fill in all required fields.");
-                return;
-            }
-             const fmrZipData = fmrDataMontgomery[zip] || fmrDataMontgomery['Other']; // Fallback to 'Other' if zip not found
-             if (!fmrZipData || !fmrZipData[bedrooms]) {
-                 alert(`FMR data not available for ${bedrooms} bedrooms in ZIP code ${zip}. Using 'Other' FMR if available.`);
-                 // Attempt to use 'Other' FMR if specific zip/bedroom combo fails
-                 const otherFMR = fmrDataMontgomery['Other']?.[bedrooms];
-                 if (!otherFMR) {
-                     alert(`FMR data not available for ${bedrooms} bedrooms even under 'Other' category.`);
-                     return;
-                 }
-             }
-
-            const proposedRent = parseFloat(proposedRentInput.value);
-            const tenantIncome = parseFloat(tenantIncomeInput.value);
-
-             if (isNaN(proposedRent) || isNaN(tenantIncome) || proposedRent < 0 || tenantIncome < 0) {
-                 alert("Please enter valid positive numbers for rent and income.");
-                 return;
-            }
-
+            const proposedRent = parseFloat(document.getElementById('proposed-rent-montgomery').value);
+            const tenantIncome = parseFloat(document.getElementById('tenant-income-montgomery').value);
             let utilityDeduction = 0;
             let heating = document.getElementById('heating-montgomery').checked;
             let water = document.getElementById('water-montgomery').checked;
@@ -322,6 +296,7 @@
             let trash = document.getElementById('trash-montgomery').checked;
             let noStove = document.getElementById('no-stove-montgomery').checked;
             let noRefrigerator = document.getElementById('no-refrigerator-montgomery').checked;
+
 
             // Using Natural Gas for heating/cooking/water heating, Montgomery rates for water/trash, AL Power for other electric
             if (heating) utilityDeduction += utilityAllowanceMontgomery['heating']?.[bedrooms] || 0;
@@ -340,7 +315,7 @@
             if (noStove) utilityDeduction += utilityAllowanceMontgomery['stove']?.[bedrooms] || 0;
             if (noRefrigerator) utilityDeduction += utilityAllowanceMontgomery['refrigerator']?.[bedrooms] || 0;
 
-            const grossFMR = fmrZipData[bedrooms] || 0; // Use potentially fallback FMR data
+            const grossFMR = fmrDataMontgomery[zip]?.[bedrooms] || 0;
             const netFMR = grossFMR - utilityDeduction;
             const maxAllowedRent = grossFMR * 1.10;
             const tenantShare = tenantIncome * 0.30;
