@@ -20,13 +20,11 @@
     </div>
 
     <template id="cleveland-template">
-        <!-- Content of cleveland.html here -->
+        <!-- Content for Cleveland, OH -->
         <h2>Cleveland, OH</h2>
-
         <form id="fmr-form-cleveland">
             <label for="zip-cleveland">Zip Code:</label>
             <input type="text" id="zip-cleveland" name="zip-cleveland" required><br><br>
-
             <label for="bedrooms-cleveland">Number of Bedrooms:</label>
             <select id="bedrooms-cleveland" name="bedrooms-cleveland">
                 <option value="0">Studio</option>
@@ -35,37 +33,27 @@
                 <option value="3">3 Bedrooms</option>
                 <option value="4">4 Bedrooms</option>
             </select><br><br>
-
             <label for="proposed-rent-cleveland">Proposed Rent:</label>
             <input type="number" id="proposed-rent-cleveland" name="proposed-rent-cleveland" required><br><br>
-
             <label for="tenant-income-cleveland">Tenant Monthly Income:</label>
             <input type="number" id="tenant-income-cleveland" name="tenant-income-cleveland" required><br><br>
-
             <fieldset>
                 <legend>Utility Responsibilities:</legend>
                 <input type="checkbox" id="heating-cleveland" name="utilities-cleveland" value="heating">
                 <label for="heating-cleveland">Heating</label><br>
-
                 <input type="checkbox" id="water-cleveland" name="utilities-cleveland" value="water">
                 <label for="water-cleveland">Water</label><br>
-
                 <input type="checkbox" id="cooking-cleveland" name="utilities-cleveland" value="cooking">
                 <label for="cooking-cleveland">Cooking</label><br>
-
                 <input type="checkbox" id="trash-cleveland" name="utilities-cleveland" value="trash">
                 <label for="trash-cleveland">Trash</label><br>
             </fieldset><br>
-
             <input type="checkbox" id="no-stove-cleveland" name="no-stove-cleveland">
             <label for="no-stove-cleveland">No Stove</label><br><br>
-
             <input type="checkbox" id="no-refrigerator-cleveland" name="no-refrigerator-cleveland">
             <label for="no-refrigerator-cleveland">No Refrigerator</label><br><br>
-
             <button type="button" id="calculate-cleveland">Calculate</button>
         </form>
-
         <div id="results-cleveland" style="margin-top: 20px;">
             <h3>Calculation Results:</h3>
             <p>Gross FMR: <span id="gross-fmr-cleveland"></span></p>
@@ -79,13 +67,11 @@
     </template>
 
     <template id="montgomery-template">
-        <!-- Content of montgomery.html here -->
+        <!-- Content for Montgomery, AL -->
         <h2>Montgomery, AL</h2>
-
         <form id="fmr-form-montgomery">
-            <label for="zip-montgomery">Zip Code:</label>
+             <label for="zip-montgomery">Zip Code:</label>
             <input type="text" id="zip-montgomery" name="zip-montgomery" required><br><br>
-
             <label for="bedrooms-montgomery">Number of Bedrooms:</label>
             <select id="bedrooms-montgomery" name="bedrooms-montgomery">
                 <option value="0">Studio</option>
@@ -94,37 +80,27 @@
                 <option value="3">3 Bedrooms</option>
                 <option value="4">4 Bedrooms</option>
             </select><br><br>
-
             <label for="proposed-rent-montgomery">Proposed Rent:</label>
             <input type="number" id="proposed-rent-montgomery" name="proposed-rent-montgomery" required><br><br>
-
             <label for="tenant-income-montgomery">Tenant Monthly Income:</label>
             <input type="number" id="tenant-income-montgomery" name="tenant-income-montgomery" required><br><br>
-
             <fieldset>
                 <legend>Utility Responsibilities:</legend>
                 <input type="checkbox" id="heating-montgomery" name="utilities-montgomery" value="heating">
                 <label for="heating-montgomery">Heating</label><br>
-
                 <input type="checkbox" id="water-montgomery" name="utilities-montgomery" value="water">
                 <label for="water-montgomery">Water</label><br>
-
                 <input type="checkbox" id="cooking-montgomery" name="utilities-montgomery" value="cooking">
                 <label for="cooking-montgomery">Cooking</label><br>
-
                 <input type="checkbox" id="trash-montgomery" name="utilities-montgomery" value="trash">
                 <label for="trash-montgomery">Trash</label><br>
             </fieldset><br>
-
             <input type="checkbox" id="no-stove-montgomery" name="no-stove-montgomery">
             <label for="no-stove-montgomery">No Stove</label><br><br>
-
             <input type="checkbox" id="no-refrigerator-montgomery" name="no-refrigerator-montgomery">
             <label for="no-refrigerator-montgomery">No Refrigerator</label><br><br>
-
             <button type="button" id="calculate-montgomery">Calculate</button>
         </form>
-
         <div id="results-montgomery" style="margin-top: 20px;">
             <h3>Calculation Results:</h3>
             <p>Gross FMR: <span id="gross-fmr-montgomery"></span></p>
@@ -143,455 +119,124 @@
         const clevelandTemplate = document.getElementById('cleveland-template');
         const montgomeryTemplate = document.getElementById('montgomery-template');
 
-        // FMR data for Cleveland, OH (Effective January 1, 2025) - From CMHA_Payment_Standards.csv
-        const fmrDataCleveland = {
-            "44017": {
-                "0": 1068,
-                "1": 1212,
-                "2": 1464,
-                "3": 1884,
-                "4": 2016
-            },
-            "44022": {
-                "0": 1440,
-                "1": 1620,
-                "2": 1968,
-                "3": 2532,
-                "4": 2712
-            },
-            "44040": {
-                "0": 1584,
-                "1": 1788,
-                "2": 2172,
-                "3": 2796,
-                "4": 3000
-            },
-            "44070": {
-                "0": 1140,
-                "1": 1284,
-                "2": 1560,
-                "3": 2004,
-                "4": 2148
-            },
-            "44101": {
-                "0": 1208,
-                "1": 1366,
-                "2": 1648,
-                "3": 2123,
-                "4": 2281
-            },
-            "44102": {
-                "0": 924,
-                "1": 1032,
-                "2": 1260,
-                "3": 1620,
-                "4": 1740
-            },
-            "44103": {
-                "0": 824,
-                "1": 937,
-                "2": 1129,
-                "3": 1468,
-                "4": 1558
-            },
-            "44104": {
-                "0": 824,
-                "1": 937,
-                "2": 1129,
-                "3": 1468,
-                "4": 1558
-            },
-            "44105": {
-                "0": 824,
-                "1": 937,
-                "2": 1129,
-                "3": 1468,
-                "4": 1558
-            },
-            "44106": {
-                "0": 1200,
-                "1": 1356,
-                "2": 1644,
-                "3": 2112,
-                "4": 2268
-            },
-            "44107": {
-                "0": 1092,
-                "1": 1236,
-                "2": 1500,
-                "3": 1932,
-                "4": 2064
-            },
-            "44108": {
-                "0": 824,
-                "1": 937,
-                "2": 1129,
-                "3": 1468,
-                "4": 1558
-            },
-            "44109": {
-                "0": 835,
-                "1": 937,
-                "2": 1140,
-                "3": 1468,
-                "4": 1569
-            },
-            "44110": {
-                "0": 835,
-                "1": 948,
-                "2": 1152,
-                "3": 1479,
-                "4": 1592
-            },
-            "44111": {
-                "0": 960,
-                "1": 1092,
-                "2": 1320,
-                "3": 1692,
-                "4": 1824
-            },
-            "44112": {
-                "0": 835,
-                "1": 937,
-                "2": 1140,
-                "3": 1468,
-                "4": 1569
-            },
-            "44113": {
-                "0": 1584,
-                "1": 1788,
-                "2": 2172,
-                "3": 2796,
-                "4": 3000
-            },
-            "44114": {
-                "0": 1452,
-                "1": 1644,
-                "2": 1992,
-                "3": 2556,
-                "4": 2748
-            },
-            "44115": {
-                "0": 1140,
-                "1": 1287,
-                "2": 1558,
-                "3": 1998,
-                "4": 2145
-            },
-            "44116": {
-                "0": 1140,
-                "1": 1284,
-                "2": 1560,
-                "3": 2004,
-                "4": 2148
-            },
-            "44117": {
-                "0": 876,
-                "1": 996,
-                "2": 1200,
-                "3": 1560,
-                "4": 1656
-            },
-            "44118": {
-                "0": 1200,
-                "1": 1356,
-                "2": 1644,
-                "3": 2112,
-                "4": 2268
-            },
-            "44119": {
-                "0": 903,
-                "1": 1027,
-                "2": 1242,
-                "3": 1592,
-                "4": 1716
-            },
-            "44120": {
-                "0": 996,
-                "1": 1128,
-                "2": 1368,
-                "3": 1764,
-                "4": 1884
-            },
-            "44121": {
-                "0": 1176,
-                "1": 1320,
-                "2": 1608,
-                "3": 2064,
-                "4": 2220
-            },
-            "44122": {
-                "0": 1476,
-                "1": 1668,
-                "2": 2028,
-                "3": 2604,
-                "4": 2796
-            },
-            "44123": {
-                "0": 994,
-                "1": 1129,
-                "2": 1366,
-                "3": 1761,
-                "4": 1885
-            },
-            "44124": {
-                "0": 1212,
-                "1": 1380,
-                "2": 1668,
-                "3": 2148,
-                "4": 2304
-            },
-            "44125": {
-                "0": 1164,
-                "1": 1320,
-                "2": 1596,
-                "3": 2052,
-                "4": 2208
-            },
-            "44126": {
-                "0": 1020,
-                "1": 1152,
-                "2": 1392,
-                "3": 1788,
-                "4": 1920
-            },
-            "44127": {
-                "0": 824,
-                "1": 937,
-                "2": 1129,
-                "3": 1468,
-                "4": 1558
-            },
-            "44128": {
-                "0": 973,
-                "1": 1095,
-                "2": 1332,
-                "3": 1720,
-                "4": 1840
-            },
-            "44129": {
-                "0": 1044,
-                "1": 1176,
-                "2": 1428,
-                "3": 1836,
-                "4": 1968
-            },
-            "44130": {
-                "0": 1116,
-                "1": 1260,
-                "2": 1524,
-                "3": 1956,
-                "4": 2100
-            },
-            "44131": {
-                "0": 1512,
-                "1": 1716,
-                "2": 2076,
-                "3": 2664,
-                "4": 2868
-            },
-            "44132": {
-                "0": 982,
-                "1": 1106,
-                "2": 1344,
-                "3": 1727,
-                "4": 1852
-            },
-            "44133": {
-                "0": 1092,
-                "1": 1236,
-                "2": 1500,
-                "3": 1932,
-                "4": 2064
-            },
-            "44134": {
-                "0": 1176,
-                "1": 1332,
-                "2": 1620,
-                "3": 2088,
-                "4": 2232
-            },
-            "44135": {
-                "0": 982,
-                "1": 1118,
-                "2": 1355,
-                "3": 1739,
-                "4": 1874
-            },
-            "44136": {
-                "0": 1224,
-                "1": 1380,
-                "2": 1680,
-                "3": 2160,
-                "4": 2316
-            },
-            "44137": {
-                "0": 1231,
-                "1": 1389,
-                "2": 1682,
-                "3": 2168,
-                "4": 2326
-            },
-            "44138": {
-                "0": 1272,
-                "1": 1428,
-                "2": 1740,
-                "3": 2232,
-                "4": 2400
-            },
-            "44139": {
-                "0": 1464,
-                "1": 1656,
-                "2": 2016,
-                "3": 2592,
-                "4": 2784
-            },
-            "44140": {
-                "0": 1428,
-                "1": 1608,
-                "2": 1956,
-                "3": 2520,
-                "4": 2700
-            },
-            "44141": {
-                "0": 1584,
-                "1": 1788,
-                "2": 2172,
-                "3": 2784,
-                "4": 2988
-            },
-            "44142": {
-                "0": 1050,
-                "1": 1185,
-                "2": 1445,
-                "3": 1863,
-                "4": 1998
-            },
-            "44143": {
-                "0": 996,
-                "1": 1128,
-                "2": 1368,
-                "3": 1764,
-                "4": 1884
-            },
-            "44144": {
-                "0": 892,
-                "1": 1016,
-                "2": 1231,
-                "3": 1581,
-                "4": 1694
-            },
-            "44145": {
-                "0": 1464,
-                "1": 1656,
-                "2": 2004,
-                "3": 2580,
-                "4": 2760
-            },
-            "44146": {
-                "0": 1080,
-                "1": 1212,
-                "2": 1476,
-                "3": 1896,
-                "4": 2040
-            },
-            "44147": {
-                "0": 1128,
-                "1": 1272,
-                "2": 1548,
-                "3": 1992,
-                "4": 2136
-            },
-            "44149": {
-                "0": 1344,
-                "1": 1524,
-                "2": 1848,
-                "3": 2376,
-                "4": 2544
-            },
-            "44181": {
-                "0": 982,
-                "1": 1118,
-                "2": 1355,
-                "3": 1739,
-                "4": 1874
+        let fmrDataCleveland = {};
+        let utilityAllowanceCleveland = {};
+        let fmrDataMontgomery = {};
+        let utilityAllowanceMontgomery = {};
+
+        // --- Data Loading ---
+        async function loadData(county) {
+            // Clear previous data
+            fmrDataCleveland = {};
+            utilityAllowanceCleveland = {};
+            fmrDataMontgomery = {};
+            utilityAllowanceMontgomery = {};
+
+            const dataPaths = {
+                cleveland: {
+                    fmr: 'data/cleveland_fmr.json',
+                    utilities: 'data/cleveland_utilities.json'
+                },
+                montgomery: {
+                    fmr: 'data/montgomery_fmr.json',
+                    utilities: 'data/montgomery_utilities.json'
+                }
+            };
+
+            if (!dataPaths[county]) return; // Exit if county not found
+
+            try {
+                const [fmrResponse, utilityResponse] = await Promise.all([
+                    fetch(dataPaths[county].fmr),
+                    fetch(dataPaths[county].utilities)
+                ]);
+
+                if (!fmrResponse.ok || !utilityResponse.ok) {
+                    throw new Error(`HTTP error! status: ${fmrResponse.status} / ${utilityResponse.status}`);
+                }
+
+                if (county === 'cleveland') {
+                    fmrDataCleveland = await fmrResponse.json();
+                    utilityAllowanceCleveland = await utilityResponse.json();
+                } else if (county === 'montgomery') {
+                    fmrDataMontgomery = await fmrResponse.json();
+                    utilityAllowanceMontgomery = await utilityResponse.json();
+                }
+                 console.log(`Data loaded for ${county}`);
+            } catch (error) {
+                console.error(`Error loading data for ${county}:`, error);
+                countyContentDiv.innerHTML = `<p>Error loading data for ${county}. Please check console and file paths.</p>`;
             }
-        };
+        }
 
-        // FMR data for Montgomery, AL (Effective January 1, 2025)
-        const fmrDataMontgomery = {
-            '36008': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36013': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36025': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36043': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36052': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36057': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36064': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36066': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36067': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36068': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36093': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273},
-            '36106': {'0': 924, '1': 977, '2': 1155, '3': 1470, '4': 1827, '5': 2101, '6': 2375},
-            '36109': {'0': 903, '1': 945, '2': 1124, '3': 1428, '4': 1775, '5': 2041, '6': 2307},
-            '36112': {'0': 1145, '1': 1250, '2': 1502, '3': 1890, '4': 2394, '5': 2753, '6': 3112},
-            '36113': {'0': 1334, '1': 1397, '2': 1659, '3': 2111, '4': 2615, '5': 3007, '6': 3399},
-            '36115': {'0': 1271, '1': 1334, '2': 1586, '3': 2027, '4': 2499, '5': 2874, '6': 3249},
-            '36117': {'0': 1050, '1': 1092, '2': 1302, '3': 1659, '4': 2058, '5': 2367, '6': 2675},
-            '36775': {'0': 914, '1': 966, '2': 1239, '3': 1628, '4': 1701, '5': 1956, '6': 2211},
-            'Other': {'0': 890, '1': 932, '2': 1108, '3': 1412, '4': 1748, '5': 2010, '6': 2273}, // For all other zip codes
-        };
-
-        // Utility allowance data for Cleveland, OH (monthly values) - Single-family dwelling
-        const utilityAllowanceCleveland = {
-            'heating': {'0': 56, '1': 58, '2': 60, '3': 62, '4': 64}, // Natural Gas
-            'water_heating': {'0': 21, '1': 25, '2': 30, '3': 35, '4': 42}, // Electric
-            'cooking': {'0': 1, '1': 1, '2': 2, '3': 2, '4': 3}, // Natural Gas
-            'trash': {'0': 9, '1': 9, '2': 9, '3': 9, '4': 9}, // City of Cleveland
-            'electricity': {'0': 42, '1': 49, '2': 66, '3': 82, '4': 98}, // Other
-            'water_sewer': {'0': 115, '1': 123, '2': 177, '3': 260, '4': 341}, // City of Cleveland
-            'stove': {'0': 21, '1': 21, '2': 21, '3': 21, '4': 21}, // Appliance - Range
-            'refrigerator': {'0': 25, '1': 25, '2': 25, '3': 25, '4': 25} // Appliance - Refrigerator
-        };
-
-        // Utility allowance data for Montgomery, AL (monthly values) - From montgomery_utilities_2024.csv
-        const utilityAllowanceMontgomery = {
-            'heating': {'0': 23, '1': 27, '2': 33, '3': 37, '4': 44}, // Natural Gas
-            'cooking': {'0': 10, '1': 11, '2': 13, '3': 14, '4': 15}, // Natural Gas
-            'water_heating': {'0': 13, '1': 17, '2': 21, '3': 29, '4': 37}, // Natural Gas
-            'water': {'0': 45, '1': 48, '2': 48, '3': 68, '4': 92}, // Montgomery Water (Sewer included)
-            'trash': {'0': 27, '1': 27, '2': 27, '3': 27, '4': 27}, // Montgomery Trash
-            'electricity': {'0': 55, '1': 59, '2': 65, '3': 75, '4': 84}, // Other Electric - AL Power
-            'stove': {'0': 4, '1': 4, '2': 4, '3': 4, '4': 4}, // Range
-            'refrigerator': {'0': 6, '1': 6, '2': 6, '3': 6, '4': 6} // Refrigerator
-        };
-
-        countyDropdown.addEventListener('change', function() {
+        // --- Event Listener for County Selection ---
+        countyDropdown.addEventListener('change', async function() {
             const selectedCounty = this.value;
             countyContentDiv.innerHTML = ''; // Clear previous content
 
-            if (selectedCounty === 'cleveland') {
-                const templateContent = clevelandTemplate.content.cloneNode(true);
-                countyContentDiv.appendChild(templateContent);
-                const calculateButton = countyContentDiv.querySelector('#calculate-cleveland');
-                if (calculateButton) {
-                    calculateButton.addEventListener('click', calculateClevelandFMR);
+            if (selectedCounty) {
+                await loadData(selectedCounty); // Load data first
+
+                let template;
+                let calculateFunction;
+                let buttonId;
+
+                if (selectedCounty === 'cleveland') {
+                    template = clevelandTemplate;
+                    calculateFunction = calculateClevelandFMR;
+                    buttonId = '#calculate-cleveland';
+                } else if (selectedCounty === 'montgomery') {
+                    template = montgomeryTemplate;
+                    calculateFunction = calculateMontgomeryFMR;
+                    buttonId = '#calculate-montgomery';
                 }
 
-            } else if (selectedCounty === 'montgomery') {
-                const templateContent = montgomeryTemplate.content.cloneNode(true);
-                countyContentDiv.appendChild(templateContent);
-                const calculateButton = countyContentDiv.querySelector('#calculate-montgomery');
-                 if (calculateButton) {
-                    calculateButton.addEventListener('click', calculateMontgomeryFMR);
+                if (template) {
+                    const templateContent = template.content.cloneNode(true);
+                    countyContentDiv.appendChild(templateContent);
+                    const calculateButton = countyContentDiv.querySelector(buttonId);
+                    if (calculateButton) {
+                        calculateButton.addEventListener('click', calculateFunction);
+                         console.log(`Event listener attached for ${selectedCounty}`);
+                    } else {
+                         console.error(`Calculate button not found for ${selectedCounty}`);
+                    }
                 }
             }
         });
 
+        // --- Calculation Functions ---
         function calculateClevelandFMR() {
+             console.log("Calculating Cleveland FMR...");
             const zip = document.getElementById('zip-cleveland').value;
             const bedrooms = document.getElementById('bedrooms-cleveland').value;
-            const proposedRent = parseFloat(document.getElementById('proposed-rent-cleveland').value);
-            const tenantIncome = parseFloat(document.getElementById('tenant-income-cleveland').value);
+            const proposedRentInput = document.getElementById('proposed-rent-cleveland');
+            const tenantIncomeInput = document.getElementById('tenant-income-cleveland');
+
+            // Input validation
+            if (!zip || !bedrooms || !proposedRentInput.value || !tenantIncomeInput.value) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+             if (!fmrDataCleveland[zip]) {
+                 alert(`FMR data not available for ZIP code ${zip}.`);
+                 return;
+             }
+             if (!fmrDataCleveland[zip][bedrooms]) {
+                 alert(`FMR data not available for ${bedrooms} bedrooms in ZIP code ${zip}.`);
+                 return;
+             }
+
+
+            const proposedRent = parseFloat(proposedRentInput.value);
+            const tenantIncome = parseFloat(tenantIncomeInput.value);
+
+            if (isNaN(proposedRent) || isNaN(tenantIncome) || proposedRent < 0 || tenantIncome < 0) {
+                 alert("Please enter valid positive numbers for rent and income.");
+                 return;
+            }
+
+
             let utilityDeduction = 0;
             let heating = document.getElementById('heating-cleveland').checked;
             let water = document.getElementById('water-cleveland').checked;
@@ -600,37 +245,27 @@
             let noStove = document.getElementById('no-stove-cleveland').checked;
             let noRefrigerator = document.getElementById('no-refrigerator-cleveland').checked;
 
-
-            // Note: The PDF has multiple utility types (gas/electric/oil for heating, etc.)
-            // Using Natural Gas for heating/cooking and Electric for water heating as default for calculation.
-            // Also using City of Cleveland rates for water/sewer/trash.
-            // Need to adjust based on actual utility types if provided.
-
+            // Using Single-family dwelling values from cleveland_utilities.json
             if (heating) utilityDeduction += utilityAllowanceCleveland['heating']?.[bedrooms] || 0;
-            if (water) utilityDeduction += utilityAllowanceCleveland['water_sewer']?.[bedrooms] || 0; // Assuming 'water' checkbox corresponds to water & sewer
+            if (water) utilityDeduction += utilityAllowanceCleveland['water_sewer']?.[bedrooms] || 0;
             if (cooking) utilityDeduction += utilityAllowanceCleveland['cooking']?.[bedrooms] || 0;
             if (trash) utilityDeduction += utilityAllowanceCleveland['trash']?.[bedrooms] || 0;
 
-            // Add deduction for electricity (other) if tenant pays
-            // Assuming a general 'electricity' checkbox might be needed or inferred
-            // For now, adding it if any utility is checked, needs refinement
+            // Add deduction for electricity (other) and water heating if tenant pays any utility
             if (heating || water || cooking || trash) {
                  utilityDeduction += utilityAllowanceCleveland['electricity']?.[bedrooms] || 0;
-                 utilityDeduction += utilityAllowanceCleveland['water_heating']?.[bedrooms] || 0; // Add water heating
+                 utilityDeduction += utilityAllowanceCleveland['water_heating']?.[bedrooms] || 0;
             }
-
 
             if (noStove) utilityDeduction += utilityAllowanceCleveland['stove']?.[bedrooms] || 0;
             if (noRefrigerator) utilityDeduction += utilityAllowanceCleveland['refrigerator']?.[bedrooms] || 0;
-
 
             const grossFMR = fmrDataCleveland[zip]?.[bedrooms] || 0;
             const netFMR = grossFMR - utilityDeduction;
             const maxAllowedRent = grossFMR * 1.10;
             const tenantShare = tenantIncome * 0.30;
-            const overage = proposedRent - netFMR;
+            const overage = proposedRent > netFMR ? proposedRent - netFMR : 0; // Calculate overage only if proposed > net
             const maxOverageAllowed = tenantIncome * 0.1;
-
 
             let status = 'DENIED';
             if (proposedRent <= netFMR) {
@@ -639,6 +274,7 @@
                 status = 'APPROVED UNDER RULE';
             }
 
+            // Display results
             document.getElementById('gross-fmr-cleveland').textContent = grossFMR.toFixed(2);
             document.getElementById('utility-deduction-cleveland').textContent = utilityDeduction.toFixed(2);
             document.getElementById('net-fmr-cleveland').textContent = netFMR.toFixed(2);
@@ -649,10 +285,36 @@
         }
 
         function calculateMontgomeryFMR() {
+             console.log("Calculating Montgomery FMR...");
             const zip = document.getElementById('zip-montgomery').value;
             const bedrooms = document.getElementById('bedrooms-montgomery').value;
-            const proposedRent = parseFloat(document.getElementById('proposed-rent-montgomery').value);
-            const tenantIncome = parseFloat(document.getElementById('tenant-income-montgomery').value);
+            const proposedRentInput = document.getElementById('proposed-rent-montgomery');
+            const tenantIncomeInput = document.getElementById('tenant-income-montgomery');
+
+             // Input validation
+            if (!zip || !bedrooms || !proposedRentInput.value || !tenantIncomeInput.value) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+             const fmrZipData = fmrDataMontgomery[zip] || fmrDataMontgomery['Other']; // Fallback to 'Other' if zip not found
+             if (!fmrZipData || !fmrZipData[bedrooms]) {
+                 alert(`FMR data not available for ${bedrooms} bedrooms in ZIP code ${zip}. Using 'Other' FMR if available.`);
+                 // Attempt to use 'Other' FMR if specific zip/bedroom combo fails
+                 const otherFMR = fmrDataMontgomery['Other']?.[bedrooms];
+                 if (!otherFMR) {
+                     alert(`FMR data not available for ${bedrooms} bedrooms even under 'Other' category.`);
+                     return;
+                 }
+             }
+
+            const proposedRent = parseFloat(proposedRentInput.value);
+            const tenantIncome = parseFloat(tenantIncomeInput.value);
+
+             if (isNaN(proposedRent) || isNaN(tenantIncome) || proposedRent < 0 || tenantIncome < 0) {
+                 alert("Please enter valid positive numbers for rent and income.");
+                 return;
+            }
+
             let utilityDeduction = 0;
             let heating = document.getElementById('heating-montgomery').checked;
             let water = document.getElementById('water-montgomery').checked;
@@ -660,7 +322,6 @@
             let trash = document.getElementById('trash-montgomery').checked;
             let noStove = document.getElementById('no-stove-montgomery').checked;
             let noRefrigerator = document.getElementById('no-refrigerator-montgomery').checked;
-
 
             // Using Natural Gas for heating/cooking/water heating, Montgomery rates for water/trash, AL Power for other electric
             if (heating) utilityDeduction += utilityAllowanceMontgomery['heating']?.[bedrooms] || 0;
@@ -679,14 +340,12 @@
             if (noStove) utilityDeduction += utilityAllowanceMontgomery['stove']?.[bedrooms] || 0;
             if (noRefrigerator) utilityDeduction += utilityAllowanceMontgomery['refrigerator']?.[bedrooms] || 0;
 
-
-            const grossFMR = fmrDataMontgomery[zip]?.[bedrooms] || 0;
+            const grossFMR = fmrZipData[bedrooms] || 0; // Use potentially fallback FMR data
             const netFMR = grossFMR - utilityDeduction;
             const maxAllowedRent = grossFMR * 1.10;
             const tenantShare = tenantIncome * 0.30;
-             const overage = proposedRent - netFMR;
+             const overage = proposedRent > netFMR ? proposedRent - netFMR : 0; // Calculate overage only if proposed > net
             const maxOverageAllowed = tenantIncome * 0.1;
-
 
             let status = 'DENIED';
             if (proposedRent <= netFMR) {
@@ -695,7 +354,7 @@
                 status = 'APPROVED UNDER RULE';
             }
 
-
+            // Display results
             document.getElementById('gross-fmr-montgomery').textContent = grossFMR.toFixed(2);
             document.getElementById('utility-deduction-montgomery').textContent = utilityDeduction.toFixed(2);
             document.getElementById('net-fmr-montgomery').textContent = netFMR.toFixed(2);
